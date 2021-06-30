@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { RoleService } from './role.service';
 
 const API_URL = 'http://s1.lansing.io:4200/api/test/';
 
@@ -8,7 +9,7 @@ const API_URL = 'http://s1.lansing.io:4200/api/test/';
   providedIn: 'root'
 })
 export class UserService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private roleService: RoleService) { }
 
   getPublicContent(): Observable<any> {
     return this.http.get(API_URL + 'all', { responseType: 'text' });
@@ -32,5 +33,9 @@ export class UserService {
 
   getUsers(): Observable<any> {
     return this.http.get('http://s1.lansing.io:4200/api/users', { responseType: 'text' });
+  }
+
+  getRoles(): Observable<any> {
+    return this.roleService.getRoles();
   }
 }

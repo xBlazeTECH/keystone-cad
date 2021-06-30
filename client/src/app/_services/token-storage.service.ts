@@ -35,4 +35,10 @@ export class TokenStorageService {
 
     return {};
   }
+
+  public updateRoles(roles: any[]): void {
+    let user = this.getUser();
+    user.roles = roles;
+
+  }
 }

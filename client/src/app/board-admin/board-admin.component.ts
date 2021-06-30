@@ -7,8 +7,10 @@ import { UserService } from '../_services/user.service';
   styleUrls: ['./board-admin.component.css']
 })
 export class BoardAdminComponent implements OnInit {
-  content?: string;
+  loading: boolean = true;
+  content: string = 'Loading...';
   users?: any[];
+  roles?: any[];
 
   constructor(private userService: UserService) { }
 
@@ -20,11 +22,30 @@ export class BoardAdminComponent implements OnInit {
       err => {
         this.content = JSON.parse(err.error).message;
       }
-    ); 
+    );
+    this.userService.getRoles().subscribe(
+      data => {
+        this.roles = JSON.parse(data);
+      },
+      err => {
+        this.content = JSON.parse(err);
+      }
+    )
     this.userService.getUsers().subscribe(
       data => {
         console.log(data);
         this.users = JSON.parse(data);
+        this.users?.forEach((val) => {
+          val.rolenames = [];
+          val.roles?.forEach((role: any) => {
+            this.roles?.forEach((rol: any) => {
+              console.log("Comparing " + role + " to " + rol._id + " as " + rol.name);
+              if (role === rol._id) val.rolenames.push(rol.name);
+            });
+          });
+          console.log(val);
+        });
+        this.loading = false;
       },
       err => {
         console.log(err);

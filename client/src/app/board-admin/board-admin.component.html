@@ -1,5 +1,38 @@
 <div class="container">
   <header class="jumbotron">
-    <p *ngFor="let user of users">{{ user.username }}</p>
+    <h1>Administration Panel</h1>
+    <p *ngIf="loading">Loading Users...</p>
   </header>
 </div>
+<table *ngIf="!loading" class="table">
+  <thead>
+    <tr>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+      <th scope="col">Password</th>
+      <th scope="col">Roles</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <th scope="row">{{ user.username }}</th>
+      <td>{{ user.email }}</td>
+      <td>*************</td>
+      <td><span class="badge badge-pill badge-primary" *ngFor="let role of user.rolenames">{{ role | uppercase }}</span></td>
+      <td>
+        <div class="btn-group">
+          <button type="button" class="btn btn-secondary">Edit</button>
+          <button type="button" class="btn btn-danger">Delete</button>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td><input type="text" class="form-control"></td>
+      <td><input type="text" class="form-control"></td>
+      <td><input type="password" class="form-control"></td>
+      <td><select class="custom-select"><option *ngFor="let role of roles">{{role.name}}</option></select></td>
+      <td><button type="button" class="btn btn-success">Add User</button></td>
+    </tr>
+  </tbody>
+</table>
