@@ -6,8 +6,7 @@
   </header>
   <p>
     <strong>Token:</strong>
-    {{ currentUser.accessToken.substring(0, 20) }} ...
-    {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
+    <input type="text" ([ngModel])="currentUser.accessToken" name="accessToken" value="{{currentUser.accessToken}}" disabled/>
   </p>
   <p>
     <strong>Email:</strong>
@@ -15,8 +14,8 @@
   </p>
   <strong>Roles:</strong>
   <ul>
-    <li *ngFor="let role of currentUser.roles">
-      {{ role }}
+    <li *ngFor="let role of roles">
+      {{ role.name | uppercase }}
     </li>
   </ul>
 </div>

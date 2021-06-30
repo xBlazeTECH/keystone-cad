@@ -8,6 +8,7 @@ import { UserService } from '../_services/user.service';
 })
 export class BoardAdminComponent implements OnInit {
   content?: string;
+  users?: any[];
 
   constructor(private userService: UserService) { }
 
@@ -19,6 +20,15 @@ export class BoardAdminComponent implements OnInit {
       err => {
         this.content = JSON.parse(err.error).message;
       }
-    );
+    ); 
+    this.userService.getUsers().subscribe(
+      data => {
+        console.log(data);
+        this.users = JSON.parse(data);
+      },
+      err => {
+        console.log(err);
+      }
+    )
   }
 }

@@ -10,6 +10,10 @@ module.exports = function(app) {
     next();
   });
 
+  app.get("/api/users", [authJwt.verifyToken, authJwt.isAdmin], controller.getUsers)
+
+  app.get("/api/test/roles", [authJwt.verifyToken], controller.roles);
+
   app.get("/api/test/all", controller.allAccess);
 
   app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
