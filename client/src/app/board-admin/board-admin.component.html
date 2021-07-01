@@ -1,8 +1,30 @@
+
+
 <div class="container">
   <header class="jumbotron">
     <h1>Administration Panel</h1>
-    <p *ngIf="loading">Loading Users...</p>
+    <!-- <p *ngIf="loading">Loading Users...</p> -->
   </header>
+</div>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="" (click)="setView('users')" [class]="(isView('users')? 'active':'')">Users</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="" (click)="setView('groups')" [class]="(isView('groups')? 'active':'')">Groups</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="" (click)="setView('settings')" [class]="(isView('settings')? 'active':'')">Settings</a>
+  </li>
+</ul>
+<div *ngIf="view == 'users'">
+  Users
+</div>
+<div *ngIf="view == 'groups'">
+  Groups
+</div>
+<div *ngIf="view === 'settings'">
+  Settings
 </div>
 <table *ngIf="!loading" class="table">
   <thead>

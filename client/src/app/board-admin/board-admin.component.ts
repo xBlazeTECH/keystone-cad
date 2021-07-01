@@ -11,6 +11,7 @@ export class BoardAdminComponent implements OnInit {
   content: string = 'Loading...';
   users?: any[];
   roles?: any[];
+  view: string = 'users';
 
   constructor(private userService: UserService) { }
 
@@ -51,5 +52,13 @@ export class BoardAdminComponent implements OnInit {
         console.log(err);
       }
     )
+  }
+
+  setView(view: string) {
+    this.view = view;
+  }
+
+  isView(view: string) {
+    return this.view === view;
   }
 }
