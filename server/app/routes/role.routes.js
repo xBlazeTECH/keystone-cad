@@ -10,11 +10,19 @@ module.exports = function(app) {
       next();
     });
 
-    app.get("/api/role/", [authJwt.verifyToken], controller.index);
-    app.get("/api/role/:id", [authJwt.verifyToken], controller.show);
-    app.post("/api/role/", [authJwt.verifyToken], controller.create);
-    app.put("/api/role/:id", [authJwt.verifyToken], controller.update);
-    app.patch("/api/role/:id", [authJwt.verifyToken], controller.update);
-    app.delete("/api/role/:id", [authJwt.verifyToken], controller.destroy);
+    app.get("/api/role/", controller.index);
+    app.get("/api/role/:id", controller.show);
+    app.post("/api/role/", controller.create);
+    app.put("/api/role/:id", controller.update);
+    app.patch("/api/role/:id", controller.update);
+    app.delete("/api/role/:id", controller.destroy);
+
+
+    // app.get("/api/role/", [authJwt.verifyToken], controller.index);
+    // app.get("/api/role/:id", [authJwt.verifyToken], controller.show);
+    // app.post("/api/role/", [authJwt.verifyToken], controller.create);
+    // app.put("/api/role/:id", [authJwt.verifyToken], controller.update);
+    // app.patch("/api/role/:id", [authJwt.verifyToken], controller.update);
+    // app.delete("/api/role/:id", [authJwt.verifyToken], controller.destroy);
   };
   

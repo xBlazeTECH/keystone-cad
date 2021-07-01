@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RoleService } from './role.service';
+import { environment } from 'src/environments/environment';
 
-const API_URL = 'http://s1.lansing.io:4200/api/test/';
+const API_URL = environment.apiUrl + '/test/';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,7 @@ export class UserService {
   }
 
   getUsers(): Observable<any> {
-    return this.http.get('http://s1.lansing.io:4200/api/users', { responseType: 'text' });
+    return this.http.get(environment.apiUrl + '/users', { responseType: 'text' });
   }
 
   getRoles(): Observable<any> {
